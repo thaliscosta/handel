@@ -1,0 +1,119 @@
+header {
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: minmax(160px, auto) minmax(auto, 600px) minmax(280px, auto);
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 40px;
+
+    .search {
+        form {
+            display: grid;
+
+            .s {
+                border: 2px solid $black;
+                font-size: 1.125rem;
+                border-radius: 4px;
+                padding: 12px 50px 12px 20px;
+                grid-area: 1/1;
+            }
+
+            .searchbutton {
+                grid-area: 1/1;
+                width: 50px;
+                justify-self: end;
+                text-indent: -100px;
+                border: none;
+                cursor: pointer;
+                background: transparent url('images/icons/search.svg') no-repeat center center;
+            }
+        }
+    }
+
+    .account {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: auto auto;
+
+        a {
+            padding: 5px 0 5px 34px;
+            background-repeat: no-repeat;
+            background-position: center left;
+        }
+
+        .my-account {
+            background-image: url('images/icons/user.svg')
+        }
+
+        .cart {
+            background-image: url('images/icons/cart.svg');
+            position: relative;
+
+            span {
+                position: absolute;
+                top: 0px;
+                left: 5px;
+                display: block;
+                border-radius: 50%;
+                width: 16px;
+                height: 16px;
+                background-color: orangered;
+                font-size: .7rem;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #FFF;
+            }
+        }
+    }
+
+    @media(max-width: 800px) {
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+
+        .account {
+            grid-gap: 40px;
+            justify-content: start;
+        }
+    }
+}
+
+.menu-categories {
+    background-color: $black;
+    padding: 5px;
+
+    ul {
+        display: flex;
+        justify-content: center;
+
+        li {
+            margin: 15px 10px;
+
+            a {
+                color: #FFF;
+                padding: 10px;
+
+                &:hover {
+                    color: orangered;
+                }
+            }
+
+            &.current-menu-item {
+                a {
+                    color: orangered;
+                }
+            }
+        }
+    }
+    @media(max-width: 800px){
+        position: relative;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        ul{
+            justify-content: initial;
+        }
+    }
+}

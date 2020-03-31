@@ -1,0 +1,44 @@
+.products-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+
+    h2 {
+        margin-top: 5px;
+        font-size: 0.725rem;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+    }
+
+    a {
+        display: grid;
+
+        .product-info {
+            grid-area: 1/1;
+        }
+
+        .product-overlay {
+            grid-area: 1/1;
+            background: rgba(255, 255, 255, .5);
+            display: flex;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+
+            span {
+                margin: auto;
+            }
+        }
+
+        &:hover {
+            .product-overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    @media(max-width: 800px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+}
