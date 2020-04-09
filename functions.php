@@ -32,7 +32,7 @@ function path_image($image){
 }
 
 //formatar produtos
-function format_products($products, $img_size){
+function format_products($products, $img_size = 'medium'){
     $products_end = [];
     foreach($products as $product){
         $products_end[] = [
@@ -45,7 +45,7 @@ function format_products($products, $img_size){
     return $products_end;
 }
 
-//lista de produtos
+//listar produtos
 function theme_products_list($products){ ?>
     <ul class="products-list">
             <?php foreach($products as $product){ ?>
@@ -74,5 +74,42 @@ function get_product_category_data($category){
         'id' => $cat_id,
         'link' => get_term_link($cat_id, 'product_cat'),
         'img' => wp_get_attachment_image_src($img_id, 'slide')[0]
+    ];
+}
+
+//remove classes desnecessarios do body_class
+function remove_some_body_class($classes) {
+    $woo_class = array_search('woocommerce', $classes);
+    $woopage_class = array_search('woocommerce-page', $classes);
+    $search = in_array('archive', $classes) || in_array('product-template-default', $classes);
+    if($woo_class && $woopage_class && $search) {
+      unset($classes[$woo_class]);
+      unset($classes[$woopage_class]);
+    }
+    return $classes;
+  }
+  add_filter('body_class', 'remove_some_body_class');
+  
+//formata o produto da single
+function format_single_product($id, $img_size = 'medium'){
+    $product = wc_get_product($id);
+
+    $gallery_ids = $product->get_gallery_attachment_ids();
+    $gallery = [];
+    if($gallery_ids){
+        foreach($gallery_ids as $img_id){
+            $gallery[] = wp_get_attachment_image_src($img_id, $img_size)[0];
+        }
+    }
+
+    return [
+        'id' => $id,
+        'name' => $product->get_name(),
+        'price' => $product->get_price_html(),
+        'link' => $product->get_permalink(),
+        'sku' => $product->get_sku(),
+        'description' => $product->get_description(),
+        'image' => wp_get_attachment_image_src($product->get_image_id(), $img_size)[0],
+        'gallery' => $gallery
     ];
 }
