@@ -109,15 +109,16 @@
     font-size: 1.25rem;
     padding: 15px 30px;
     background-color: #0066bb !important;
-    &:hover{
+
+    &:hover {
         background-color: #1188ee;
     }
 }
 
 //my-account
-.woocommerce form.checkout_coupon, 
-.woocommerce form.login, 
-.woocommerce form.register{
+.woocommerce form.checkout_coupon,
+.woocommerce form.login,
+.woocommerce form.register {
     border: none;
     padding: 0;
     margin: 10px 0;
@@ -125,11 +126,128 @@
 }
 
 //pag seguro
-.woocommerce #pagseguro-payment-form{
+.woocommerce #pagseguro-payment-form {
     border: none;
 }
-.woocommerce #payment div.payment_box{
-    &::placeholder{
+
+.woocommerce #payment div.payment_box {
+    &::placeholder {
         color: rgba(0, 0, 0, .4);
+    }
+}
+
+//minha conta
+.woocommerce-account h2 {
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+.woocommerce-account.logged-in {
+    .woocommerce {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        grid-gap: 30px;
+
+        &:before {
+            display: none;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .woocommerce-MyAccount-navigation,
+    .woocommerce-MyAccount-content {
+        width: auto;
+        float: none;
+    }
+
+    @media(max-width: 800px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+//side-menu
+.woocommerce-MyAccount-navigation ul {
+    background-color: #111;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, .08);
+
+        &:hover {
+            background-color: orangered;
+        }
+    }
+
+    .is-active {
+        background-color: orangered;
+    }
+}
+
+.woocommerce-MyAccount-content {
+    p {
+        margin-bottom: 1rem;
+    }
+
+    button {
+        margin-top: 15px !important;
+    }
+
+    address {
+        border-width: 1px !important;
+        border-radius: 0px !important;
+    }
+}
+
+.woocommerce-Address-title {
+    display: flex;
+    border: 1px solid #111;
+    padding: 15px;
+}
+
+//pedido recebido
+.woocommerce-order-received {
+    h2 {
+        font-size: 1.25rem;
+        margin: 10px 0;
+    }
+
+    .woocommerce-thankyou-order-received {
+        color: #FFF;
+        background-color: #0066BB;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 30px;
+    }
+
+    ul.order_details {
+        background-color: #eee;
+        padding: 15px;
+        margin-bottom: 30px;
+        & + p{
+            margin-bottom: 30px;
+        }
+
+        li {
+            margin: 10px;
+
+            strong {
+                font-weight: 400;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+.woocommerce-page .woocommerce-message .button{
+    font-weight: normal;
+    color: #fff;
+    background: #0066BB;
+    &:hover{
+        background: #1188ee;
     }
 }
